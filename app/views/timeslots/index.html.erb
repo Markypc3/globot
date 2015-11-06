@@ -1,0 +1,11 @@
+<% @timeslots.each do |timeslot| %>
+  <div class="timeslot">
+    <h1><%= timeslot.title %></h1>
+    <h2>Given by <%= timeslot.user.username%></h2>
+    <p>
+      <%= timeslot.body%>
+    </p>
+    <h3>Starts: <%="#{timeslot.slot_start} and ends #{timeslot.slot_end}"%></h3>
+    <%= button_to "Pitch!", url: "/timeslots/#{timeslot.id}/pitch/new", method: :get%>
+  </div>
+<% end %>

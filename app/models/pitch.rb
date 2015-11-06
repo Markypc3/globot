@@ -1,4 +1,5 @@
 class Pitch < ActiveRecord::Base
   belongs_to :timeslot
-  bleongs_to :user
+  belongs_to :user
+  has_one :appointment
 end

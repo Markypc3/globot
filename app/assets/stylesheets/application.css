@@ -13,3 +13,9 @@
  *= require_tree .
  *= require_self
  */
+ 
+.cloin {
+  color: green;
+  font-weight: bold;
+  text-decoration: underline;
+}
