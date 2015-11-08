@@ -1,0 +1,21 @@
+<div class="timeslot">
+  <h1><%= link_to "#{@timeslot.title}" timeslot_path(timeslot.id) %></h1>
+  <h2>Given by <%= timeslot.user.username%></h2>
+  <p>
+    <%= timeslot.body%>
+  </p>
+  <h3>Starts: <%="#{@timeslot.slot_start} and ends #{@timeslot.slot_end}"%></h3>
+  <%= button_to "Edit", url: edit_timeslot_path(@timeslot.id), method: :get%>
+</div>
+<div class="pitches">
+  <%= "There are no pitches posted here yet..." unless @timeslot.pitches.any?%>
+  <% @timeslot.pitches.each do |pitch| %>
+    <div class="pitch">
+      <h2><%= pitch.title %></h2>
+      <h3><%= "Pitch by #{pitch.user.username}"%></h3>
+      <p>
+        <%= pitch.body %>
+      </p>
+
+    </div>
+</div>

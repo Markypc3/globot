@@ -7,7 +7,27 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<h1>Welcome to Globot!</h1>
+  <div class="logologinbar">
+    <div class="logo">
+      <img src="http://assets.thefreelogomakers.com/generators/free-logo-maker/images/tflm.co.WZANFAK36-2.png"
+       alt="Globot" />
+    </div>
+    <% if current_user == nil %>
+      <div class="login">
+        <%= form_tag '/login' do %>
+        Email:  <%= text_field_tag :email %>
+        Password:  <%= password_field_tag :password %>
+        <%= submit_tag "Login"%>
+        <% end %>
+        <span class="signup">or | <%= button_to "Sign Up!", '/users/new', method: :get=%> </span>
+      </div>
+      <% else %>
+        <div class="login">
+          <%= button_to "Logout!", logout_path, method: :get=%>
+        </div>
+      <% end %>
+  </div>
+<h1>Welcome <%= current_user != nil ? "back, #{current_user.firstname}!": "to Globot!" %></h1>
 <span class = "tagline">Pitch to meet anyone on the planet!
   <span class= "president">Like the President,</span>
   <span class= "norris">Chuck Norris,</span> or Even

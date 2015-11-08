@@ -1,6 +1,6 @@
 <% @timeslots.each do |timeslot| %>
   <div class="timeslot">
-    <h1><%= timeslot.title %></h1>
+    <h1><%= link_to "#{timeslot.title}" timeslot_path(timeslot.id) %></h1>
     <h2>Given by <%= timeslot.user.username%></h2>
     <p>
       <%= timeslot.body%>

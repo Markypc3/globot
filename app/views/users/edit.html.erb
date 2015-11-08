@@ -1,0 +1,15 @@
+<%= form_for @user, url: "/users/#{@user.id}", method: :put do |f| %>
+  <%= f.label :firstname %>
+  <%= f.textbox :firstname %>
+  <%= f.label :lastname %>
+  <%= f.textbox :lastname %>
+  <%= f.label :username%> The username must be unique. This may be the same as your email address if you like.
+  <%= f.textbox :username %>
+  <%= f.label :email %>
+  <%= f.textbox :email %>
+  <%= f.label :password%>
+  <%= f.textbox :password%>
+  <%= f.label :password_confirmation%>
+  <%= f.textbox :password_confirmation%>
+  <%= f.submit :update %>
+<% end %>

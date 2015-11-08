@@ -1,0 +1,8 @@
+<% if current_user %>
+  <h1>Hello <%=current_user.firstname%>, Welcome to your profile page!</h1>
+<% else %>
+  <h1><%= "Welcome to #{@user.firstname} #{@user.lastname}'s public profile page!'" %></h1>
+  User's available public timeslots here.
+  If no timeslots then state that this user has no published timeslots.
+  Display past or archived timeslots in gray.
+<% end %>
