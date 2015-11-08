@@ -18,14 +18,14 @@
         Email:  <%= text_field_tag :email %>
         Password:  <%= password_field_tag :password %>
         <%= submit_tag "Login"%>
-        <% end %>
-        <span class="signup">or | <%= button_to "Sign Up!", '/users/new', method: :get=%> </span>
+        <% end %><span class="signup">or | <%= button_to "Sign Up!", '/users/new', method: :get=%> </span>
       </div>
-      <% else %>
-        <div class="login">
-          <%= button_to "Logout!", logout_path, method: :get=%>
-        </div>
-      <% end %>
+    <% else %>
+      <div class="login">
+        <%= button_to "Goto Profile", "/users/#{current_user.id}", method: :get %>
+        <%= button_to "Logout", logout_path, method: :get%>
+      </div>
+    <% end %>
   </div>
 <h1>Welcome <%= current_user != nil ? "back, #{current_user.firstname}!": "to Globot!" %></h1>
 <span class = "tagline">Pitch to meet anyone on the planet!

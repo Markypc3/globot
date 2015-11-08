@@ -1,5 +1,6 @@
 <% if current_user %>
   <h1>Hello <%=current_user.firstname%>, Welcome to your profile page!</h1>
+  <%= button_to "Edit your profile", "/users/#{current_user.id}/edit", method: :get %>
 <% else %>
   <h1><%= "Welcome to #{@user.firstname} #{@user.lastname}'s public profile page!'" %></h1>
   User's available public timeslots here.

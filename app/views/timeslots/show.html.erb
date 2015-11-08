@@ -1,21 +1,40 @@
 <div class="timeslot">
-  <h1><%= link_to "#{@timeslot.title}" timeslot_path(timeslot.id) %></h1>
-  <h2>Given by <%= timeslot.user.username%></h2>
+  <h1><%= link_to "#{@timeslot.title}", timeslot_path(@timeslot.id) %></h1>
+  <h2>Given by <%= @timeslot.user.username%></h2>
   <p>
-    <%= timeslot.body%>
+    <%= @timeslot.body%>
   </p>
   <h3>Starts: <%="#{@timeslot.slot_start} and ends #{@timeslot.slot_end}"%></h3>
-  <%= button_to "Edit", url: edit_timeslot_path(@timeslot.id), method: :get%>
+  <% if @timeslot.user == current_user %>
+    <%= button_to "Edit", edit_timeslot_path(@timeslot.id), method: :get%>
+  <% else %>
+    <%= "There are no pitches posted here yet..." unless @timeslot.pitches.any?%>
+    <%= button_to "Pitch", new_timeslot_path(@timeslot.id), method: :get%>
+  <% end %>
 </div>
 <div class="pitches">
-  <%= "There are no pitches posted here yet..." unless @timeslot.pitches.any?%>
   <% @timeslot.pitches.each do |pitch| %>
     <div class="pitch">
       <h2><%= pitch.title %></h2>
-      <h3><%= "Pitch by #{pitch.user.username}"%></h3>
+      <h3><%=
+        "Pitch by #{pitch.user.username}, posted on #{pitch.created_at}#{
+        pitch.accepted ? " and accepted on #{pitch.appointment.created_at}!" : ""
+        }"
+      %></h3>
       <p>
         <%= pitch.body %>
       </p>
-
+      <span class="updated">Last updated at <%= pitch.updated_at %></span>
+      <% if pitch.user == current_user %>
+        <%=
+          button_to "Edit",
+          edit_timeslot_pitch_path(
+            timeslot_id: @timeslot.id,
+            pitch_id: pitch.id
+          ),
+          method: :get
+        %>
+      <% end %>
     </div>
+  <% end %>
 </div>

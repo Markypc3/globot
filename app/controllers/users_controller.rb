@@ -20,16 +20,17 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
   def update
+    binding.pry
     @user = User.find(params[:id])
-    if @user == current_user && @user.save
-      redirect_to '/'
+    if @user == current_user && @user.update(user_params)
+      redirect_to "/users/#{params[:id]}"
     else
       render :edit
     end
   end
   def destroy
     @user = User.find(params[:id])
-    if @user = User.find(current_user.id)
+    if @user == User.find(current_user.id)
       @user.destroy
       redirect_to logout_path
     else
@@ -41,6 +42,7 @@ class UsersController < ApplicationController
   def user_params
     params.require(:user).permit(
       :username,
+      :firstname,
       :lastname,
       :email,
       :password,
