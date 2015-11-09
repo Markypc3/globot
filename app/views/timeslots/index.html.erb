@@ -6,6 +6,6 @@
       <%= timeslot.body%>
     </p>
     <h3>Starts: <%="#{timeslot.slot_start} and ends #{timeslot.slot_end}"%></h3>
-    <%= button_to "Pitch!", url: "/timeslots/#{timeslot.id}/pitch/new", method: :get%>
+    <%= button_to "Pitch!", new_timeslot_pitch_path(timeslot.id), method: :get%>
   </div>
 <% end %>

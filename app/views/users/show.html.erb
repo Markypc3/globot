@@ -1,6 +1,35 @@
 <% if current_user %>
   <h1>Hello <%=current_user.firstname%>, Welcome to your profile page!</h1>
-  <%= button_to "Edit your profile", "/users/#{current_user.id}/edit", method: :get %>
+  <%= button_to "Create a timeslot", new_timeslot_path, method: :get%>
+  <% if current_user.appointments.any? %>
+    <h3>Your upcoming appointments:</h3>
+    <% current_user.appointments.each do |appointment| %>
+      <div class="appointment">
+        Begins: <%= appointment.meeting_start %>
+        Ends: <%= appointment.meeting_end %>
+        For your accepted pitch titled: <%= appointment.pitch.title %>
+        On <%= "#{appointment.timeslot.user.username}'s slot titled: '#{appointment.timeslot.title}" %>
+      </div>
+    <% end %>
+  <% else %>
+    <h3>You don't have any appointments here yet.</h3>
+  <% end %>
+  <% if current_user.timeslots.any? %>
+    <h3>Your posted timeslots:</h3>
+    <% current_user.timeslots.each do |timeslot| %>
+      <div class="timeslot">
+        <h1><%= link_to "#{timeslot.title}", timeslot_path(timeslot.id) %></h1>
+        <h2>Given by <%= timeslot.user.username%></h2>
+        <p>
+          <%= timeslot.body%>
+        </p>
+        <h3>Starts: <%="#{timeslot.slot_start} and ends #{timeslot.slot_end}"%></h3>
+      </div>
+    <% end %>
+  <% else %>
+    <h3>You haven't yet posted any Timeslots!</h3>
+  <% end %>
+  <%= button_to "Edit your account details", "/users/#{current_user.id}/edit", method: :get %>
 <% else %>
   <h1><%= "Welcome to #{@user.firstname} #{@user.lastname}'s public profile page!'" %></h1>
   User's available public timeslots here.

@@ -1,0 +1,10 @@
+<%= form_for @appointment, timeslot_pitch_appointment_path(
+  timeslot_id: params[:timeslot_id],
+  pitch_id: params[:pitch_id]
+) %>
+  <%= f.label :meeting_start, "Meeting Start Time" %>
+  <%= f.datetime_select :meeting_start %>
+  <%= f.label :meeting_end, "Meeting End Time" %>
+  <%= f.datetime_select :meeting_end %>
+  <%= f.submit "Update appointment" %>
+<% end %>

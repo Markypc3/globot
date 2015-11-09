@@ -1,0 +1,9 @@
+<h1><%= current_user.firstname %>'s Appointments </h1>
+<% @appointments.each do |appointment| %>
+  <div class="appointment">
+    Begins: <%= appointment.meeting_start %>
+    Ends: <%= appointment.meeting_end %>
+    For your accepted pitch titled: <%= appointment.pitch.title %>
+    On <%= "#{appointment.timeslot.user.username}'s slot titled: '#{appointment.timeslot.title}" %>
+  </div>
+<% end %>

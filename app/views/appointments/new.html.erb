@@ -1,0 +1,7 @@
+<%= form_for @appointment, url: timeslot_pitch_appointments_path do |f|%>
+  <%= f.label :meeting_start, "Meeting Start Time" %>
+  <%= f.datetime_select :meeting_start %>
+  <%= f.label :meeting_end, "Meeting End Time" %>
+  <%= f.datetime_select :meeting_end %>
+  <%= f.submit "Create appointment" %>
+<% end %>

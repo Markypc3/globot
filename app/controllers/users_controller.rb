@@ -20,7 +20,6 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
   def update
-    binding.pry
     @user = User.find(params[:id])
     if @user == current_user && @user.update(user_params)
       redirect_to "/users/#{params[:id]}"

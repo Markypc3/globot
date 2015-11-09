@@ -1,0 +1,14 @@
+<h1>Your appointment:</h1>
+Begins: <%= appointment.meeting_start %>
+Ends: <%= appointment.meeting_end %>
+For your accepted pitch titled: <%= appointment.pitch.title %>
+On <%= "#{appointment.timeslot.user.username}'s slot titled: '#{appointment.timeslot.title}" %>
+<h3>Please abide by the following rules</h3>
+<ul>
+  <li>Please be on time. If you are late, you may be downvoted by your host.</li>
+  <li>Repeat offenders may be docked or have their pitch rights revoked.</li>
+  <li>Be nice and courteous.</li>
+  <li>Abide by the rules of conduct.</li>
+  <li>Tips for the host are greatly appreciated!</li>
+  <li>Lastly, have fun and enjoy!</li>
+</ul>

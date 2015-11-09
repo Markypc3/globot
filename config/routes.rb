@@ -16,10 +16,11 @@ Rails.application.routes.draw do
   delete '/users/:id' => 'users#destroy'
 
   resources :timeslots do
-    resources :pitches
+    resources :pitches do
+      resources :appointments
+    end
   end
-  resources :appointments
-
+  post '/timeslots/:timeslot_id/pitches/:id/accept' => 'pitches#accept'
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
   get '/logout' => 'sessions#destroy'

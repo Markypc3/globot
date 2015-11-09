@@ -9,23 +9,45 @@
     <%= button_to "Edit", edit_timeslot_path(@timeslot.id), method: :get%>
   <% else %>
     <%= "There are no pitches posted here yet..." unless @timeslot.pitches.any?%>
-    <%= button_to "Pitch", new_timeslot_path(@timeslot.id), method: :get%>
+    <%= button_to "Pitch", new_timeslot_pitch_path(@timeslot.id), method: :get%>
   <% end %>
 </div>
+<%= "There are no appointments attached to this timeslot yet..." unless @timeslot.appointments.any?%>
+<% @timeslot.appointments.each do |appointment| %>
+  <div class="appointment">
+    Begins: <%= appointment.meeting_start %>
+    Ends: <%= appointment.meeting_end %>
+    For your accepted pitch titled: <%= appointment.pitch.title %>
+    On <%= "#{appointment.timeslot.user.username}'s slot titled: '#{appointment.timeslot.title}" %>
+    <%=
+      button_to "Edit this appointment", edit_timeslot_pitch_appointment_path(
+      id:appointment.id
+      ), method: :get if @timeslot.user == current_user
+    %>
+  </div>
+<% end %>
 <div class="pitches">
   <% @timeslot.pitches.each do |pitch| %>
     <div class="pitch">
       <h2><%= pitch.title %></h2>
       <h3><%=
         "Pitch by #{pitch.user.username}, posted on #{pitch.created_at}#{
-        pitch.accepted ? " and accepted on #{pitch.appointment.created_at}!" : ""
+        pitch.accepted ? " and accepted on #{pitch.updated_at}!" : ""
         }"
       %></h3>
       <p>
         <%= pitch.body %>
       </p>
       <span class="updated">Last updated at <%= pitch.updated_at %></span>
-      <% if pitch.user == current_user %>
+      <% if @timeslot.user == current_user %>
+        <%=
+          if pitch.accepted == true
+            button_to "Generate an Appointment", new_timeslot_pitch_appointment_path(timeslot_id: @timeslot.id, pitch_id: pitch.id), method: :get
+          else
+            button_to "Accept", "/timeslots/#{@timeslot.id}/pitches/#{pitch.id}/accept"
+          end
+        %>
+      <% elsif pitch.user == current_user %>
         <%=
           button_to "Edit",
           edit_timeslot_pitch_path(
