@@ -1,5 +1,5 @@
 class PitchesController < ApplicationController
-  authorize
+  # authorize
   def index
     redirect_to '/'
   end
