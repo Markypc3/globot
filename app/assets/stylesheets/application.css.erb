@@ -13,21 +13,56 @@
  *= require_tree .
  *= require_self
  */
+ @import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro);
+
  .logologinbar {
+   width: 100%;
+   height: 10%;
    display: inline;
  }
  .logo {
-   display: inline;
+   display: inline-block;
+   height: inherit;
+ }
+ .logo img {
+   height: 150px;
  }
  .signup {
+   display: inline;
+ }
+ .signup form {
    display: inline;
  }
  .login {
    float: right;
    display: inline;
  }
+ .login form {
+   display: inline;
+ }
 .cloin {
   color: green;
   font-weight: bold;
   text-decoration: underline;
+}
+.container {
+  margin: 0 auto;
+  text-align: center;
+  font-family: 'Source Sans Pro', sans-serif;
+}
+.timeslot {
+  /*background: rgba(56, 145, 157, 0.3);*/
+  background: rgba(179, 172, 158, 0.79);
+  padding: 10px;
+  border-radius: 5px;
+  margin: 15px 15%;
+  text-align: left;
+}
+/****************************
+Background Images
+****************************/
+
+body {
+  background-image: url('<%= asset_path("seamless_paper_texture.png")%>');
+  margin: 0, auto;
 }
