@@ -27,13 +27,16 @@
       </div>
     <% end %>
   </div>
+  <% if current_user == nil %>
   <div class="container">
     <h1>Welcome <%= current_user != nil ? "back, #{current_user.firstname}!": "to Globot!" %></h1>
     <span class = "tagline">Pitch to meet anyone on the planet!
       <span class= "president">Like the President,</span>
       <span class= "norris">Chuck Norris,</span> or Even
       <span class="cloin">Cloin!</span>
-    </span>
+    </span><br />
+    Join us and make yourself available for an some time to help make the world a better place, or pitch to meet someone who can help you!
+    <% end %>
     <%= yield %>
   </div>
 

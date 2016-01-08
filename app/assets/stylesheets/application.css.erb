@@ -25,7 +25,7 @@
    height: inherit;
  }
  .logo img {
-   height: 150px;
+   max-height: 150px;
  }
  .signup {
    display: inline;
@@ -52,7 +52,7 @@
 }
 .timeslot {
   /*background: rgba(56, 145, 157, 0.3);*/
-  background: rgba(179, 172, 158, 0.79);
+  background: rgba(87, 108, 168, 0.79);
   padding: 10px;
   border-radius: 5px;
   margin: 15px 15%;
@@ -61,8 +61,13 @@
 /****************************
 Background Images
 ****************************/
-
+a {
+  color: #F5F3F5;
+  text-decoration: none;
+}
 body {
-  background-image: url('<%= asset_path("seamless_paper_texture.png")%>');
+  /*background-image: url('<%= asset_path("seamless_paper_texture.png")%>');*/
+  background-color: #1B264F;
+  color: #F5F3F5;
   margin: 0, auto;
 }
